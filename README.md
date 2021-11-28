@@ -111,3 +111,4 @@ nano (edit) /etc/ansible/hosts file to add the elk server's IP address
 Which URL do you navigate to in order to check that the ELK server is running?
 
 http://[your.ELK-VM.External.IP]:5601/app/kibana
+<img width="960" alt="Kibana Home" src="https://user-images.githubusercontent.com/86851214/143776025-5f15468a-3118-4302-8248-0ed403e1acfd.png">
