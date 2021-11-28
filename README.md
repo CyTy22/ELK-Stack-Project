@@ -112,3 +112,33 @@ Which URL do you navigate to in order to check that the ELK server is running?
 
 http://[your.ELK-VM.External.IP]:5601/app/kibana
 <img width="960" alt="Kibana Home" src="https://user-images.githubusercontent.com/86851214/143776025-5f15468a-3118-4302-8248-0ed403e1acfd.png">
+
+Answer the following questions to fill in the blanks:
+
+Which file is the playbook? Where do you copy it? /etc/ansible/file/filebeat-configuration.yml
+Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_ edit the /etc/ansible/hosts file to add webserver/elkserver ip addresses
+Which URL do you navigate to in order to check that the ELK server is running? http://[your.ELK-VM.External.IP]:5601/app/kibana
+Using the Playbook-filebeat-playbook.yml
+
+Copy the filebeat.yml file to the /etc/ansible/files/ directory.
+
+Update the configuration file to include the Private IP of the Elk-Server to the ElasticSearch and Kibana sections of the configuration file.
+
+Create a new playbook in the /etc/ansible/roles/ directory that will install, drop in the updated configuration file, enable and configure system module, run the filebeat setup, and start the filebeat service.
+
+Create a new playbook in the /etc/ansible/roles/ directory that will install, drop in the updated configuration file, enable and configure system module, run the metricbeat setup, and start the metricbeat service.
+
+Run the playbooks, and navigate back to the installation page on the ELk-Server GUI, click the check data on the Module Status
+
+Click the verfiy incoming Data to check and see the receiving logs from the DVWA machines.
+
+you should see the following:
+<img width="960" alt="Filebeat Logs" src="https://user-images.githubusercontent.com/86851214/143776321-605873f0-c1b7-471f-8d73-e60ce8c17198.png">
+
+The commands needed to run the Ansible configuration for the Elk-Server are:
+
+ssh sysadmin@JumpBox(Public IP)
+sudo docker container list -a (locate your ansible container)
+sudo docker start container (name of the container)
+sudo docker attach container (name of the container)
+cd /etc/ansible/ - ansible-playbook elk.yml (configures Elk-Server and starts the Elk container on the Elk-Server) wait a couple minutes for the implementation of the Elk-Server - cd /etc/ansible/roles/ - ansible-playbook filebeat-playbook.yml (installs Filebeat and Metricbeat) - open a new web browser (http://[your.ELK-VM.External.IP]:5601/app/kibana) This will bring up the Kibana Web Portal - check the Module status for file beat and metric beat to see their data receiving.
